@@ -10,12 +10,16 @@ from PIL import Image
 #洞窟画像を読み込むデータセットクラス
 class Doukutsu_Dataset(torch.utils.data.Dataset):
     #コンストラクタ
-    def __init__(self, data_trans=None, label_trans=None):        
+    def __init__(self,train=True, data_trans=None, label_trans=None):        
         
         self.data_trans = data_trans
         self.label_trans = label_trans
         
-        self.img_dir = './data/doukutsu_img'
+        if train:
+            self.img_dir = './data/doukutsu_img'
+        else:
+            self.img_dir = './data/doukutsu_test'
+        
         self.img_paths = [str(p) for p in Path(self.img_dir).glob('*.jpg')]
         #print(self.img_paths)
         #__len__の返り値
