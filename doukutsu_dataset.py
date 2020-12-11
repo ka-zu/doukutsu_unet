@@ -10,7 +10,7 @@ from PIL import Image
 #洞窟画像を読み込むデータセットクラス
 class Doukutsu_Dataset(torch.utils.data.Dataset):
     #コンストラクタ
-    def __init__(self,train=True, data_trans=None, label_trans=None):        
+    def __init__(self, train=True, data_trans=None, label_trans=None):        
         
         self.data_trans = data_trans
         self.label_trans = label_trans
@@ -44,6 +44,9 @@ class Doukutsu_Dataset(torch.utils.data.Dataset):
             out_label = self.label_trans(out_label)
 
         return out_data, out_label
+
+    def get_paths(self):
+        return self.img_paths
 
 
 def imshow(img):
